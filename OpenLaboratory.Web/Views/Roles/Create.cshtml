@@ -1,0 +1,29 @@
+﻿@using OpenLaboratory.Web.ViewModels
+@model RoleCreateViewModel
+@{
+    ViewData["Title"] = "创建角色";
+}
+
+<h1>创建</h1>
+<h4>角色</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RoleName" class="control-label"></label>
+                <input asp-for="RoleName" class="form-control" />
+                <span asp-validation-for="RoleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="创建" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-primary">返回角色列表</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
