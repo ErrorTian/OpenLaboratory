@@ -136,7 +136,7 @@ namespace OpenLaboratory.Web.Controllers
             var users = await _userManager.Users.ToListAsync();
             foreach (var user in users)
             {
-                if (!await _userManager.IsInRoleAsync(user, role.Name))
+                if (!await _userManager.IsInRoleAsync(user, role.Name)&&(user.RoleName=="未分配"||user.RoleName==""|| user.RoleName == null))
                 {
                     vm.Users.Add(user);
                 }
@@ -155,7 +155,12 @@ namespace OpenLaboratory.Web.Controllers
                 var result = await _userManager.AddToRoleAsync(user, role.Name);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Edit", new {id = role.Id});
+                    user.RoleName = role.Name;
+                    var updateResult = await _userManager.UpdateAsync(user);
+                    if (updateResult.Succeeded)
+                    {
+                        return RedirectToAction("Edit", new { id = role.Id });
+                    }
                 }
 
                 foreach (var error in result.Errors)
@@ -183,6 +188,7 @@ namespace OpenLaboratory.Web.Controllers
 
                     if (result.Succeeded)
                     {
+                        user.RoleName = "未分配";
                         return RedirectToAction("Edit", new { id = role.Id });
                     }
 

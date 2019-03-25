@@ -19,6 +19,9 @@
             姓名
         </th>
         <th>
+            角色
+        </th>
+        <th>
             编辑
         </th>
         <th>
@@ -34,6 +37,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StudentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">编辑</a>

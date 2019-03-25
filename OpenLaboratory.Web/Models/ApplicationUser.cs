@@ -9,7 +9,8 @@ namespace OpenLaboratory.Web.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        
         public string StudentName { get; set; }
+
+        public string RoleName { get; set; }
     }
 }
