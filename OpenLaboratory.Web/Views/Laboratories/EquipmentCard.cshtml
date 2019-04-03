@@ -1,0 +1,13 @@
+﻿
+@model OpenLaboratory.Web.Models.Equipment
+
+<div class="card" style="width: 100%;">
+    <img class="card-img-top" src="~/img_common/img.svg" alt="@Model.Name">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">
+            设备状态： @Model.Statu
+        </p>
+        <a asp-controller="Equipments" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-primary">查看更多</a>
+    </div>
+</div>

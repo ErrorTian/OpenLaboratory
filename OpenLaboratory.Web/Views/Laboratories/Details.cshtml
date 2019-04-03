@@ -7,29 +7,21 @@
 <h1>详情</h1>
 <h4>实验室</h4>
 <hr />
-<div>
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Statu)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Statu)
-        </dd>
-    </dl>
+
+<div class="container">
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">编辑实验室</a>
+        <a asp-action="Index" class="btn btn-primary">返回实验室列表</a>
+    </div>
+    <div class="row">
+        @foreach (var equ in Model.Equipments)
+        {
+            <div class="col-sm-12 col-md-6 col-lg-4 py-3 px-lg-5 ">
+                <partial name="EquipmentCard" model="equ" />
+            </div>
+        }
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">编辑实验室</a>
-    <a asp-action="Index" class="btn btn-primary">返回实验室列表</a>
-</div>
+
+
+

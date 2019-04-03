@@ -34,6 +34,11 @@ namespace OpenLaboratory.Web.Controllers
 
             var laboratory = await _context.Laboratories
                 .FirstOrDefaultAsync(m => m.Id == id);
+            var equs = from equ in _context.Equipments
+                       where equ.Laboratory.Id == laboratory.Id
+                       select equ;
+            laboratory.Equipments = equs.ToList();
+
             if (laboratory == null)
             {
                 return NotFound();
